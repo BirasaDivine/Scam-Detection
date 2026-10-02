@@ -108,6 +108,18 @@ def main():
     print("Confusion matrix [ [TN FP] [FN TP] ]:")
     print(confusion_matrix(y_test, y_pred))
 
+    # --- Unseen-strategy (generalization) test ---
+    if held_out_scam:
+        ho_texts, ho_feats, ho_labels = rows_to_arrays(held_out_scam)
+        Xho_tfidf = vectorizer.transform(ho_texts)
+        Xho_feat = feats_to_matrix(ho_feats, feature_names)
+        Xho = hstack([Xho_tfidf, Xho_feat])
+        ho_pred = clf.predict(Xho)
+        ho_recall = (ho_pred == 1).mean()  # all true labels are 1 (scam) here
+        print(f"\n=== Unseen-strategy generalization test: '{HELD_OUT_CATEGORY}' (never seen during training) ===")
+        print(f"{len(held_out_scam)} held-out scam conversations")
+        print(f"Unseen-strategy recall (correctly flagged as scam): {ho_recall:.3f}")
+
 
 if __name__ == "__main__":
     main()
