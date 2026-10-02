@@ -43,5 +43,53 @@
     across 8 categories, plus a placeholder legitimate-conversation set pending integration of a full
     non-scam SMS dataset. Not evaluated for production use.
   </p>
+
+<script>
+const SCAM_EXAMPLE = "Dear customer, your account has been suspended.\nClick here to verify immediately: http://bit.ly/verify-now\nThis is urgent, act now or lose access.";
+const LEGIT_EXAMPLE = "Hey, are we still on for lunch tomorrow?\nYes! 1pm works for me.\nGreat, see you then.";
+
+function fillExample(type) {
+  document.getElementById('conversation').value = type === 'scam' ? SCAM_EXAMPLE : LEGIT_EXAMPLE;
+}
+
+async function analyze() {
+  const text = document.getElementById('conversation').value.trim();
+  const btn = document.getElementById('analyzeBtn');
+  const resultDiv = document.getElementById('result');
+  if (!text) { alert('Please enter a conversation first.'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Analyzing...';
+
+  try {
+    const res = await fetch('/analyze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ conversation: text })
+    });
+    const data = await res.json();
+
+    resultDiv.className = data.label;
+    resultDiv.style.display = 'block';
+    const patternsHtml = data.detected_patterns.length
+      ? '<ul>' + data.detected_patterns.map(p => `<li>${p}</li>`).join('') + '</ul>'
+      : '<p>No strong scam-pattern indicators detected.</p>';
+
+    resultDiv.innerHTML = `
+      <div class="label-row">${data.label === 'scam' ? '⚠️ Likely Scam' : '✅ Likely Legitimate'}</div>
+      <div class="confidence">Confidence: ${(data.confidence * 100).toFixed(1)}%</div>
+      <div><strong>Detected patterns:</strong></div>
+      ${patternsHtml}
+    `;
+  } catch (err) {
+    resultDiv.style.display = 'block';
+    resultDiv.className = '';
+    resultDiv.innerHTML = '<p>Error contacting the server. Is the backend running?</p>';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Analyze';
+  }
+}
+</script>
 </body>
 </html>
