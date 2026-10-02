@@ -1,0 +1,1 @@
+["contains_phone_number", "contains_url", "exclamation_count", "has_authority_claim", "has_personalization", "has_urgency_language", "mentions_money", "message_length_scaled", "requests_action", "turn_count_scaled"]
