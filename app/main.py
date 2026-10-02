@@ -8,6 +8,7 @@ Run with:
 """
 import os
 import sys
+import json
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
@@ -49,6 +50,17 @@ def serve_index():
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+
+@app.get("/metrics")
+def metrics():
+    """Surfaces the known-strategy vs unseen-strategy generalization results
+    from the last training run, for display in the UI."""
+    metrics_path = os.path.join(os.path.dirname(__file__), "..", "models", "metrics.json")
+    if not os.path.exists(metrics_path):
+        return {"error": "No metrics found. Run src/train.py first."}
+    with open(metrics_path) as f:
+        return json.load(f)
 
 
 @app.post("/analyze", response_model=AnalyzeResponse)
