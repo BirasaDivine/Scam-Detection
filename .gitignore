@@ -1,0 +1,33 @@
+# COVA-X is licensed research data (non-commercial, 12-month renewable
+# access) -- it must NOT be redistributed via this public repo.
+# Covers the dataset, its data sheet / exporter and the terms file.
+data/raw/*
+!data/raw/.gitkeep
+
+# Derived data (regenerate from data/raw)
+data/processed/*
+!data/processed/.gitkeep
+
+# Trained model artifacts (regenerate with src/train.py)
+models/*.joblib
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Secrets and local config
+.env
+.env.*
+
+# Logs, editor and OS files
+server.log
+*.log
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
