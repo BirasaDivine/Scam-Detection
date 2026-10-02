@@ -9,3 +9,37 @@ ScamGuard takes a pasted SMS conversation and:
 3. Returns the classification, a confidence score, and the specific patterns that were detected.
 
 This initial version also runs the proposal's central **generalization experiment**: one entire scam category (`virtual_kidnapping`) is withheld completely from training, then tested separately, to check whether the model still recognizes it as a scam despite never training on that category. Results are available at the `/metrics` endpoint.
+
+
+## How to Set Up the Environment and Project
+
+**Requirements:** Python 3.10+
+
+```powershell
+# 1. Clone the repo
+git clone <your-repo-url>
+cd scamguard
+
+# 2. Create and activate a virtual environment
+python -m venv venv
+venv\Scripts\Activate.ps1      # Windows PowerShell
+# source venv/bin/activate     # macOS/Linux
+
+# 3. Install dependencies
+pip install -r requirements.txt
+```
+
+**Get the training data (COVA-X):**
+Download the training data from this repo data/raw
+
+**Train the model:**
+```powershell
+python src/train.py
+```
+This prints known-strategy and unseen-strategy evaluation results and saves the trained model to `models/`.
+
+**Run the app:**
+```powershell
+uvicorn app.main:app --reload --port 8000
+```
+Then open http://127.0.0.1:8000 in your browser.
