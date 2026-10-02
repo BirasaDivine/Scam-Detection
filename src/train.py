@@ -59,7 +59,7 @@ def feats_to_matrix(feat_dicts, feature_names):
 
 def main():
     print(f"Loading COVA-X (cap={PER_CATEGORY_CAP}/category, held-out category = '{HELD_OUT_CATEGORY}')...")
-    all_scam = load_covax(raw_dir="data/raw/covax", per_category_cap=PER_CATEGORY_CAP)
+    all_scam = load_covax(per_category_cap=PER_CATEGORY_CAP)
     known_scam = [r for r in all_scam if r["category"] != HELD_OUT_CATEGORY]
     held_out_scam = [r for r in all_scam if r["category"] == HELD_OUT_CATEGORY]
     print(f"  known-category scam examples: {len(known_scam)}")

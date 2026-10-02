@@ -1,7 +1,7 @@
 """
 load_covax.py
 Loads real COVA-X conversation JSON files (Lochstampfor & Roy, 2026,
-arXiv:2606.06879) from data/raw/covax/<category>/*.json.
+arXiv:2606.06879) from data/raw/Dataset/COVA-X_Dataset/<category>/*.json.
 
 COVA-X is licensed research data (non-commercial, 12-month renewable access
 per its TERMS file) -- it is NOT committed to this repo. See README for how
@@ -30,7 +30,10 @@ def _load_one(filepath: str) -> dict:
     }
 
 
-def load_covax(raw_dir: str = "data/raw/covax", per_category_cap: int | None = 300,
+DEFAULT_RAW_DIR = "data/raw/Dataset/COVA-X_Dataset"
+
+
+def load_covax(raw_dir: str = DEFAULT_RAW_DIR, per_category_cap: int | None = 300,
                 seed: int = 42) -> list[dict]:
     """Loads COVA-X conversations, optionally capped per category for faster
     iteration during development. Set per_category_cap=None to load everything."""
