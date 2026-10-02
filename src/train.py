@@ -120,6 +120,23 @@ def main():
         print(f"{len(held_out_scam)} held-out scam conversations")
         print(f"Unseen-strategy recall (correctly flagged as scam): {ho_recall:.3f}")
 
+    # --- Save artifacts ---
+    os.makedirs("models", exist_ok=True)
+    joblib.dump(clf, "models/baseline_model.joblib")
+    joblib.dump(vectorizer, "models/vectorizer.joblib")
+    with open("models/feature_names.json", "w") as f:
+        json.dump(feature_names, f)
+    with open("models/metrics.json", "w") as f:
+        json.dump({
+            "known_strategy": {"accuracy": acc, "precision": prec, "recall": rec, "f1": f1},
+            "unseen_strategy": {
+                "category": HELD_OUT_CATEGORY,
+                "n_examples": len(held_out_scam),
+                "recall": float(ho_recall) if held_out_scam else None,
+            },
+        }, f, indent=2)
+    print("\nSaved model, vectorizer, feature list, and metrics to models/")
+
 
 if __name__ == "__main__":
     main()
