@@ -27,9 +27,14 @@ const SECTIONS: { heading: string; body: string }[] = [
       "We do not ask you to create an account.",
   },
   {
+    heading: "What stays on your device.",
+    body: "Your light or dark theme choice is saved only in your browser. It is never sent to us.",
+  },
+  {
     heading: "What we count.",
     body:
-      "For each check we save the verdict, the format (single SMS, plain text or WhatsApp export) and the time. " +
+      "For each check we save the verdict, the format (single SMS, plain text or WhatsApp export), the time, " +
+      "and a random check ID so that an optional scam-source answer can be attached to it. " +
       "If you choose to tell us where a scam came from (for example SMS or WhatsApp), we save that answer too. " +
       "None of this identifies you.",
   },
@@ -41,7 +46,9 @@ const SECTIONS: { heading: string; body: string }[] = [
     heading: "Where it runs.",
     body:
       "The website is hosted on Netlify, the checking service on Render, and the counts database on Neon. " +
-      "Your text passes through Render's servers for a moment while it is checked.",
+      "Your text passes through Render's servers for a moment while it is checked. " +
+      "Like most websites, our hosting providers keep standard server logs, such as IP address and time, " +
+      "for security and reliability. We do not use these logs or link them to your checks.",
   },
   {
     heading: "How to use the result.",

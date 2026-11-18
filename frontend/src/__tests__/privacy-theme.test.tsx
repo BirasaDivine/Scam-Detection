@@ -40,6 +40,7 @@ describe("Privacy Policy page", () => {
       "What ScamGuard does.",
       "What we read.",
       "What we never keep.",
+      "What stays on your device.",
       "What we count.",
       "Who can see the counts.",
       "Where it runs.",
@@ -49,6 +50,11 @@ describe("Privacy Policy page", () => {
     ]);
     expect(screen.getByText("[CONTACT EMAIL]")).toBeInTheDocument();
     expect(screen.getByText(/We do not store or log the text of your messages/)).toBeInTheDocument();
+    expect(screen.getByText(/the time, and a random check ID so that an optional scam-source answer/)).toBeInTheDocument();
+    expect(screen.getByText(/We do not use these logs or link them to your checks\.$/)).toBeInTheDocument();
+    expect(
+      screen.getByText("Your light or dark theme choice is saved only in your browser. It is never sent to us."),
+    ).toBeInTheDocument();
     expect(footerLink()).toHaveAttribute("href", "/privacy");
     expect(screen.getByRole("link", { name: /back to scamguard/i })).toHaveAttribute("href", "/");
   });
