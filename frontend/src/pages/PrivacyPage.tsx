@@ -51,9 +51,7 @@ const SECTIONS: { heading: string; body: string }[] = [
   },
   {
     heading: "How to use the result.",
-    body:
-      "A verdict is a guide, not a guarantee. Before you send money or share a PIN or code, confirm the request " +
-      "through an official channel, such as calling your bank or mobile money provider on its published number.",
+    body: "ScamGuard can make mistakes. Always confirm requests for money, PINs or codes with your bank or provider.",
   },
   {
     heading: "Who it is for.",
