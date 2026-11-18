@@ -1,4 +1,7 @@
-/* Palette and type. Flat fills only: no gradients, glow or glass. */
+/* Palette and type. Flat fills only: no gradients, glow or glass.
+   Light is the default set. The dark set applies when <html data-theme="dark">, which the
+   inline script in index.html sets before React renders (stored choice, else the device setting).
+   Every text colour below keeps at least 4.5:1 against bg, surface, card, sunken and notice-bg. */
 :root {
   --bg: #fafaf8;
   --surface: #ffffff;
@@ -9,6 +12,8 @@
   --bar-bg: #161616;
   --bar-fg: #f2f2ee;
   --bar-muted: #8f8f88;
+  --bar-current: rgb(255 255 255 / 0.12);
+  --shadow: rgb(0 0 0 / 0.14);
   --border: #e3e3de;
   --border-strong: #b9b9b2;
   --ink: #141414;
@@ -16,7 +21,7 @@
   --accent: #1f6b4a;
   --on-accent: #ffffff;
   --scam: #b3261e;
-  --borderline: #9a6700;
+  --borderline: #8a5c00;
   --notice-bg: #fbf3df;
   --focus: #1f6b4a;
 
@@ -31,29 +36,29 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #121211;
-    --surface: #1b1b1a;
-    --sunken: #232321;
-    --card: #1b1b1a;
-    --accent-soft: #1d3328;
-    --pattern: #2e2e2a;
-    --bar-bg: #2a2a27;
-    --bar-fg: #f2f2ee;
-    --bar-muted: #8f8f88;
-    --border: #34342f;
-    --border-strong: #5a5a54;
-    --ink: #f2f2ee;
-    --muted: #a3a39c;
-    --accent: #5cbf8f;
-    --on-accent: #0d1f17;
-    --scam: #f2867e;
-    --borderline: #e0b04a;
-    --notice-bg: #2b2414;
-    --focus: #5cbf8f;
-    color-scheme: dark;
-  }
+:root[data-theme="dark"] {
+  --bg: #121211;
+  --surface: #1b1b1a;
+  --sunken: #232321;
+  --card: #1b1b1a;
+  --accent-soft: #1d3328;
+  --pattern: #2e2e2a;
+  --bar-bg: #2a2a27;
+  --bar-fg: #f2f2ee;
+  --bar-muted: #a3a39c;
+  --bar-current: rgb(255 255 255 / 0.12);
+  --shadow: rgb(0 0 0 / 0.5);
+  --border: #34342f;
+  --border-strong: #5a5a54;
+  --ink: #f2f2ee;
+  --muted: #a3a39c;
+  --accent: #5cbf8f;
+  --on-accent: #0d1f17;
+  --scam: #f2867e;
+  --borderline: #e0b04a;
+  --notice-bg: #2b2414;
+  --focus: #5cbf8f;
+  color-scheme: dark;
 }
 
 *,
@@ -78,6 +83,11 @@ h2,
 h3,
 p {
   margin: 0;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 3px;
 }
 
 button,

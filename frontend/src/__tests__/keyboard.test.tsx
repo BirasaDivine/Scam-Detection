@@ -15,6 +15,7 @@ describe("keyboard", () => {
     const paste = screen.getByRole("tab", { name: /paste text/i });
 
     await user.tab(); // About menu
+    await user.tab(); // Theme toggle
     await user.tab();
     expect(upload).toHaveFocus();
     expect(paste).toHaveAttribute("tabindex", "-1"); // one tab stop for the whole list
@@ -57,6 +58,7 @@ describe("keyboard", () => {
     render(<App />);
 
     await user.tab(); // About menu
+    await user.tab(); // Theme toggle
     await user.tab(); // Upload chat tab
     await user.keyboard("{ArrowRight}"); // Paste text tab
     await user.tab(); // textarea

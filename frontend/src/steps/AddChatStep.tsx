@@ -3,6 +3,7 @@ import { useId, useRef, useState } from "react";
 import { MAX_BYTES, byteLength, countMessages, readFileText } from "../chat";
 import { ChangeFileButton, DropZone, FieldError, FileInput, FileRow, PasteBox } from "../components/ChatInput";
 import { Tabs, type TabItem } from "../components/Tabs";
+import { PRIVACY_PATH } from "../routes";
 import ui from "../components/ui.module.css";
 
 export type InputTab = "upload" | "paste";
@@ -104,6 +105,13 @@ export function AddChatStep({ tab, onTab, file, onFile, text, onText, onNext }: 
           </div>
         )}
       </Tabs>
+      <p className={ui.hint} style={{ marginTop: 12, textAlign: "center" }}>
+        Your messages are checked in memory and never stored.{" "}
+        {/* New tab, so the chat added above is not lost */}
+        <a href={PRIVACY_PATH} target="_blank" rel="noopener noreferrer">
+          Privacy Policy<span className="visually-hidden"> (opens in a new tab)</span>
+        </a>
+      </p>
       <p className={ui.hint} style={{ marginTop: 12, textAlign: "center" }}>
         Image upload: planned for a later version.
       </p>

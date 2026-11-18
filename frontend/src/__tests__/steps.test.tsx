@@ -17,7 +17,9 @@ describe("Step 1: Add chat", () => {
     expect(screen.getByText(/attach a chat/i)).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /next step/i })).not.toBeInTheDocument();
     expect(screen.getByText("Image upload: planned for a later version.")).toBeInTheDocument();
-    expect(screen.queryByRole("contentinfo")).not.toBeInTheDocument();
+    // The footer holds only the Privacy Policy link
+    const footer = screen.getByRole("contentinfo");
+    expect(within(footer).getAllByRole("link").map((a) => a.textContent)).toEqual(["Privacy Policy"]);
   });
 
   it("shows a file row with name, message count and size, and removes it", async () => {

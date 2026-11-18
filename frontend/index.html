@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>ScamGuard</title>
+    <!-- Sets the theme before the page paints, so there is no flash of the wrong one. Same rules
+         as src/theme.ts. If you change this script, update its sha256 in netlify.toml (a test checks). -->
+    <script>(function(){var t;try{t=localStorage.getItem("scamguard-theme")}catch(e){}if(t!=="light"&&t!=="dark"){try{t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}catch(e){t="light"}}document.documentElement.setAttribute("data-theme",t)})()</script>
   </head>
   <body>
     <div id="root"></div>

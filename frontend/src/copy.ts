@@ -21,6 +21,9 @@ export const ORIGINS: { id: Origin; label: string }[] = [
 
 export const PRIVACY_NOTE = "Your chat is analysed in memory and is not stored. Only the verdict and source are counted.";
 
+export const RESULT_DISCLAIMER =
+  "This is a guide, not a guarantee. Check any request for money, a PIN or a code through an official channel.";
+
 export const VERDICT_TITLE: Record<Verdict, string> = {
   scam: "This looks like a scam",
   not_scam: "This does not look like a scam",

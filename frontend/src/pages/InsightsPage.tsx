@@ -2,6 +2,7 @@ import { ArrowsClockwise, Lightbulb, LockSimple, SignOut, WarningCircle } from "
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { ApiError, getStats, type Stats } from "../api";
 import { formatCount } from "../chat";
+import { PageHeader, SiteFooter } from "../components/Layout";
 import ui from "../components/ui.module.css";
 import { ORIGINS, SOURCES } from "../copy";
 import app from "../App.module.css";
@@ -88,6 +89,7 @@ export function InsightsPage() {
   return (
     <div className={app.page}>
       <main className={`${app.main} ${styles.main}`}>
+        <PageHeader />
         <h1 className={styles.title}>Insights</h1>
         <p className={ui.hint}>Counts of checks and where reported scams came from. No chat text is stored.</p>
 
@@ -132,6 +134,7 @@ export function InsightsPage() {
           </div>
         )}
       </main>
+      <SiteFooter />
     </div>
   );
 }

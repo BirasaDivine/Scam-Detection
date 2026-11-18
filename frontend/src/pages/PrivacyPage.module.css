@@ -1,0 +1,47 @@
+.main {
+  max-width: 640px;
+}
+
+@media (min-width: 900px) {
+  .main {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 640px;
+  }
+}
+
+.policy {
+  display: grid;
+  gap: 20px;
+  overflow-wrap: break-word;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.updated {
+  margin-top: -12px;
+  color: var(--muted);
+}
+
+.section {
+  display: grid;
+  gap: 4px;
+}
+
+.heading {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: 8px;
+  min-height: 44px;
+  font-weight: 500;
+}
