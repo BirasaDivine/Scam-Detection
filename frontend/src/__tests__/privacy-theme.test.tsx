@@ -166,9 +166,9 @@ describe("Result disclaimer", () => {
     expect(await screen.findByRole("heading", { name: "This looks like a scam" })).toBeInTheDocument();
     expect(
       screen.getByText(
-        "This is a guide, not a guarantee. Check any request for money, a PIN or a code through an official channel.",
+        "ScamGuard can make mistakes. Always confirm requests for money, PINs or codes with your bank or provider.",
       ),
     ).toBeInTheDocument();
-    expect(RESULT_DISCLAIMER).toMatch(/^This is a guide, not a guarantee\./);
+    expect(RESULT_DISCLAIMER).toMatch(/^ScamGuard can make mistakes\./);
   });
 });
