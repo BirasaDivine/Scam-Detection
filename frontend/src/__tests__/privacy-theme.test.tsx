@@ -34,7 +34,7 @@ describe("Privacy Policy page", () => {
     render(<Root />);
 
     expect(screen.getByRole("heading", { level: 1, name: "Privacy Policy" })).toBeInTheDocument();
-    expect(screen.getByText("Last updated: [DATE]")).toBeInTheDocument();
+    expect(screen.getByText(/^Last updated: \S+/)).not.toHaveTextContent("[");
     const headings = screen.getAllByRole("heading", { level: 2 }).map((h) => h.textContent);
     expect(headings).toEqual([
       "What ScamGuard does.",
@@ -48,7 +48,8 @@ describe("Privacy Policy page", () => {
       "Who it is for.",
       "Contact.",
     ]);
-    expect(screen.getByText("[CONTACT EMAIL]")).toBeInTheDocument();
+    const contact = screen.getByRole("heading", { name: "Contact." }).nextElementSibling;
+    expect(contact).toHaveTextContent(/^\S+@\S+\.\S+$/);
     expect(screen.getByText(/We do not store or log the text of your messages/)).toBeInTheDocument();
     expect(screen.getByText(/the time, and a random check ID so that an optional scam-source answer/)).toBeInTheDocument();
     expect(screen.getByText(/We do not use these logs or link them to your checks\.$/)).toBeInTheDocument();

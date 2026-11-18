@@ -4,9 +4,8 @@ import { PageHeader, SiteFooter } from "../components/Layout";
 import app from "../App.module.css";
 import styles from "./PrivacyPage.module.css";
 
-// Placeholders: replace before publishing.
-const LAST_UPDATED = "[DATE]";
-const CONTACT_EMAIL = "[CONTACT EMAIL]";
+const LAST_UPDATED = "2026";
+const CONTACT_EMAIL = "b.divine@alustudent.com";
 
 const SECTIONS: { heading: string; body: string }[] = [
   {
