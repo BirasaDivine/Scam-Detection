@@ -113,6 +113,23 @@
   overflow-wrap: anywhere;
 }
 
+.disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--notice-bg);
+  color: var(--ink);
+}
+
+.disclaimer svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--borderline);
+}
+
 .origin {
   margin-top: 16px;
 }

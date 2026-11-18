@@ -3,6 +3,7 @@ import {
   ArrowLeft,
   ArrowsClockwise,
   CheckCircle,
+  Info,
   Question,
   WarningCircle,
   WarningOctagon,
@@ -12,7 +13,7 @@ import { formatCount } from "../chat";
 import { ConfidenceBar } from "../components/ConfidenceBar";
 import { OriginQuestion } from "../components/OriginQuestion";
 import ui from "../components/ui.module.css";
-import { VERDICT_TITLE, errorCopy } from "../copy";
+import { RESULT_DISCLAIMER, VERDICT_TITLE, errorCopy } from "../copy";
 import styles from "./ResultStep.module.css";
 
 export type Outcome =
@@ -110,6 +111,11 @@ function Result({ result, onRestart }: { result: AnalyzeResult; onRestart: () =>
           <dd className={`${ui.mono} ${styles.small}`}>{breakable(result.model_version)}</dd>
         </div>
       </dl>
+
+      <p className={styles.disclaimer}>
+        <Info size={18} aria-hidden="true" />
+        {RESULT_DISCLAIMER}
+      </p>
 
       <div className={ui.actions}>
         <button type="button" className={`${ui.textButton} ${ui.actionsEnd}`} onClick={onRestart}>

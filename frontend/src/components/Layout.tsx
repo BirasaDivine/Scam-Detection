@@ -1,7 +1,9 @@
 import { Equals, FolderOpen, Info, ListChecks, ShieldCheck, X } from "@phosphor-icons/react";
 import { useEffect, useId, useRef, useState } from "react";
 import { PRIVACY_NOTE } from "../copy";
+import { PRIVACY_PATH } from "../routes";
 import styles from "./Layout.module.css";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function MockBanner() {
   return (
@@ -45,6 +47,7 @@ export function TopBar() {
         >
           {open ? <X size={22} aria-hidden="true" /> : <Equals size={22} aria-hidden="true" />}
         </button>
+        <ThemeToggle />
       </div>
       <div id={panelId} className={styles.about} hidden={!open}>
         <h2 className={styles.aboutTitle}>About ScamGuard</h2>
@@ -52,6 +55,30 @@ export function TopBar() {
         <p>It is not a proven detector and it can be wrong. {PRIVACY_NOTE}</p>
       </div>
     </div>
+  );
+}
+
+/** Header for the pages outside the main flow (Insights, Privacy Policy). */
+export function PageHeader() {
+  return (
+    <div className={styles.topBarWrap}>
+      <div className={styles.topBar}>
+        <a href="/" className={styles.homeLink}>
+          <ShieldCheck size={22} aria-hidden="true" />
+          ScamGuard
+        </a>
+        <ThemeToggle />
+      </div>
+    </div>
+  );
+}
+
+/** Shown on every page. `stepBar` leaves room for the floating step bar. */
+export function SiteFooter({ stepBar = false }: { stepBar?: boolean }) {
+  return (
+    <footer className={styles.footer} data-step-bar={stepBar || undefined}>
+      <a href={PRIVACY_PATH}>Privacy Policy</a>
+    </footer>
   );
 }
 
